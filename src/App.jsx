@@ -76,6 +76,44 @@ function App() {
     };
   }, []);
 
+  // Dynamic Canonical URL & SEO Metadata synchronization
+  useEffect(() => {
+    const baseUrl = "https://rwave-website.vercel.app";
+    let canonicalUrl = `${baseUrl}/`;
+    let pageTitle = "R Wave Cardio Products NX | Precision Medical Equipment";
+    let robotsContent = "index, follow";
+
+    if (isProductsPageRoute) {
+      canonicalUrl = `${baseUrl}/products`;
+      pageTitle = "Complete Medical Equipment Catalog | R Wave Cardio Products NX";
+      robotsContent = "index, follow";
+    } else if (isAdminRoute) {
+      canonicalUrl = `${baseUrl}/admin`;
+      pageTitle = "Staff Portal | R Wave Cardio Products NX";
+      robotsContent = "noindex, nofollow";
+    }
+
+    document.title = pageTitle;
+
+    // Synchronize <link rel="canonical">
+    let linkTag = document.querySelector('link[rel="canonical"]');
+    if (!linkTag) {
+      linkTag = document.createElement("link");
+      linkTag.setAttribute("rel", "canonical");
+      document.head.appendChild(linkTag);
+    }
+    linkTag.setAttribute("href", canonicalUrl);
+
+    // Synchronize <meta name="robots">
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement("meta");
+      robotsMeta.setAttribute("name", "robots");
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute("content", robotsContent);
+  }, [isAdminRoute, isProductsPageRoute]);
+
   // Fetch products from GET /api/products
   const fetchProductsFromApi = async () => {
     try {
