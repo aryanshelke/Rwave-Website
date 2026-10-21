@@ -44,7 +44,7 @@ import fwPort from "./assets/products/fw-port.jpg"
 import aboutCardioTech from './assets/about-cardio-tech.jpg'
 import aboutDistribution from './assets/about-distribution.jpg'
 
-import servicesBg from '/Users/aryanshelke/Desktop/VsCode/Rwave(Final Website)/Service.jpeg'
+import servicesBg from './assets/Services-BG.jpeg'
 import './App.css'
 import AdminPortal from './components/AdminPortal'
 import ProductsPage from './components/ProductsPage'
