@@ -1,4 +1,12 @@
 const mongoose = require('mongoose');
+const dns = require('dns');
+
+// Configure reliable DNS servers to prevent ISP/router SRV & TXT lookup failures (ESERVFAIL)
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch {
+  // Gracefully fallback to default system DNS
+}
 
 let cachedConnection = null;
 

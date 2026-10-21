@@ -3,8 +3,9 @@ const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
 
-// Load environment variables before any other imports
+// Load environment variables before any other imports (supports root and server/ directory)
 dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');

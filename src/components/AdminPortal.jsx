@@ -104,7 +104,7 @@ export default function AdminPortal({ onBackToSite }) {
         setAuthError(data.message || 'Invalid credentials');
       }
     } catch (err) { console.error(err);
-      setAuthError('Connection failed. Please ensure the backend server is running on port 5000.');
+      setAuthError('Connection to backend failed. Please ensure the backend server is running on port 5001 (npm run dev:all).');
     } finally {
       setIsLoggingIn(false);
     }

@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const dotenv = require('dotenv');
 
-// Load environment variables
+// Load environment variables (supports Vercel env, root .env, and server/.env)
 dotenv.config();
+dotenv.config({ path: path.join(__dirname, '../server/.env') });
 
 const connectDB = require('../server/config/db');
 const authRoutes = require('../server/routes/authRoutes');
