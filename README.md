@@ -11,21 +11,6 @@ Official web portal and digital product catalog for **R-Wave Cardio Products NX*
 
 ---
 
-## Table of Contents
-
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Tech Stack](#-tech-stack)
-- [Project Architecture](#-project-architecture)
-- [Local Development](#-local-development)
-  - [Prerequisites](#prerequisites)
-  - [Environment Setup](#environment-setup)
-  - [Installation & Running](#installation--running)
-- [API Overview](#-api-overview)
-- [License](#-license)
-
----
-
 ## Overview
 
 The platform serves two functions:
