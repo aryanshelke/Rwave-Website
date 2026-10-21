@@ -42,7 +42,7 @@ const verifyAdmin = (req, res, next) => {
     );
     req.admin = decoded;
     next();
-  } catch (err) {
+  } catch {
     return res.status(403).json({
       success: false,
       message: 'Invalid or expired token.',

@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   XCircle,
   X,
+  Monitor,
 } from 'lucide-react';
 import rwaveLogo from '../assets/RwaveLogo.svg';
 import './AdminPortal.css';
@@ -27,6 +28,37 @@ const CATEGORIES = [
 ];
 
 export default function AdminPortal({ onBackToSite }) {
+  // Desktop-only access enforcement (Restricted to desktop/laptop >= 1024px)
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isIPad = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+    const isWideScreen = window.innerWidth >= 1024;
+    return isWideScreen && !isMobileUA && !isIPad;
+  });
+
+  const [currentWidth, setCurrentWidth] = useState(() => {
+    return typeof window !== 'undefined' ? window.innerWidth : 1024;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isIPad = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+      const isWideScreen = window.innerWidth >= 1024;
+      setIsDesktop(isWideScreen && !isMobileUA && !isIPad);
+      setCurrentWidth(window.innerWidth);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
+
   // Auth state
   const [token, setToken] = useState(() => localStorage.getItem('rwave_admin_token') || '');
   const [loginUser, setLoginUser] = useState('');
@@ -254,6 +286,67 @@ export default function AdminPortal({ onBackToSite }) {
   });
 
   /* ──────────────────────────────────
+     RENDER: DESKTOP ONLY RESTRICTION
+  ────────────────────────────────── */
+  if (!isDesktop) {
+    return (
+      <div className="admin-portal-wrapper">
+        <div className="admin-desktop-only-screen">
+          <div className="admin-login-glow-orb" />
+          <div className="admin-desktop-only-card">
+            <div className="admin-desktop-icon-badge">
+              <Monitor size={42} className="admin-desktop-icon" />
+              <div className="admin-desktop-lock-badge">
+                <Lock size={13} />
+              </div>
+            </div>
+
+            <div className="admin-brand-pill">
+              <ShieldAlert size={14} />
+              <span>Desktop Only Access</span>
+            </div>
+
+            <h1 className="admin-desktop-title">Admin Portal Restricted</h1>
+
+            <p className="admin-desktop-desc">
+              For security, catalog integrity, and precision data management, the <strong>R-Wave Cardio NX Admin Portal</strong> is strictly accessible on <strong>desktop and laptop computers</strong>.
+            </p>
+
+            <div className="admin-desktop-specs-box">
+              <div className="admin-desktop-spec-item">
+                <span className="admin-spec-label">Access Requirement:</span>
+                <span className="admin-spec-value">Desktop / Laptop</span>
+              </div>
+              <div className="admin-desktop-spec-item">
+                <span className="admin-spec-label">Minimum Resolution:</span>
+                <span className="admin-spec-value">1024px or wider</span>
+              </div>
+              <div className="admin-desktop-spec-item">
+                <span className="admin-spec-label">Current Viewport:</span>
+                <span className="admin-spec-value warning">{currentWidth}px wide</span>
+              </div>
+            </div>
+
+            <p className="admin-desktop-hint">
+              Please open this administrative console from a desktop computer or maximize your browser window.
+            </p>
+
+            <button
+              type="button"
+              onClick={onBackToSite}
+              className="admin-btn-primary"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <ArrowLeft size={16} />
+              <span>Return to Public Website</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  /* ──────────────────────────────────
      RENDER: LOGIN SCREEN
   ────────────────────────────────── */
   if (!token) {
@@ -339,7 +432,7 @@ export default function AdminPortal({ onBackToSite }) {
         <div className="admin-nav-left">
           <div className="admin-nav-logo-badge">
             <img src={rwaveLogo} alt="R Wave Logo" className="admin-nav-logo" />
-            <h2 className="admin-nav-title">R Wave NX — Inventory Control</h2>
+            <h2 className="admin-nav-title">Inventory Control</h2>
           </div>
           <span className="admin-count-pill">{products.length} Products in Database</span>
         </div>
