@@ -897,7 +897,7 @@ function App() {
       {/* ─── SERVICES SECTION (After-Sales Support & Maintenance) ─── */}
       <section id="services" className="services-section">
         <div className="services-bg-wrapper" aria-hidden="true">
-          <img src={servicesBg} alt="" className="services-bg-img" />
+          <img src={servicesBg} alt="" className="services-bg-img"/>
           <div className="services-bg-overlay" />
         </div>
 
