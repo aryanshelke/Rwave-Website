@@ -42,3 +42,4 @@ export const deleteFromCloudinary = async (publicId) => {
     return null;
   }
 };
+

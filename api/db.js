@@ -40,3 +40,4 @@ export async function connectDB() {
     throw err;
   }
 }
+
