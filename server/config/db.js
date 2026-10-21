@@ -37,7 +37,7 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 10000,
     });
 
-    cachedConnection = conn;
+    cachedConnection = conn.connection;
     console.log(`🔌 Connected to MongoDB Atlas: ${conn.connection.host} (DB: ${conn.connection.name})`);
 
     // Event listeners for disconnects
@@ -64,7 +64,7 @@ const connectDB = async () => {
       });
     }
 
-    return conn;
+    return conn.connection;
   } catch (error) {
     console.error('❌ MongoDB Atlas Connection Failed:', error.message);
     console.error('----------------------------------------------------');

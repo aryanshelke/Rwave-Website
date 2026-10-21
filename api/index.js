@@ -1,15 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const dotenv = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load environment variables (supports Vercel env, root .env, and server/.env)
 dotenv.config();
 dotenv.config({ path: path.join(__dirname, '../server/.env') });
 
-const connectDB = require('../server/config/db');
-const authRoutes = require('../server/routes/authRoutes');
-const productRoutes = require('../server/routes/productRoutes');
+import connectDB from '../server/config/db.js';
+import authRoutes from '../server/routes/authRoutes.js';
+import productRoutes from '../server/routes/productRoutes.js';
 
 const app = express();
 
@@ -18,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serverless Middleware: Connect to MongoDB Atlas (reuses cached connection)
+// Serverless Middleware: Connect to MongoDB Atlas (reuses cached connection across warm invocations)
 app.use(async (req, res, next) => {
   try {
     await connectDB();
@@ -32,22 +36,45 @@ app.use(async (req, res, next) => {
   }
 });
 
-// API Routes
+// API Routes - mount both with and without '/api' prefix to be resilient to Vercel rewrite rules
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/products', productRoutes);
+app.use('/products', productRoutes);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
-  const mongoose = require('mongoose');
+const healthHandler = async (req, res) => {
+  try {
+    const conn = await connectDB();
+    res.json({
+      status: 'online',
+      platform: 'vercel-serverless',
+      timestamp: new Date().toISOString(),
+      database: conn.readyState === 1 ? 'connected' : 'disconnected',
+      host: conn.host || null,
+      name: conn.name || null,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'error',
+      platform: 'vercel-serverless',
+      timestamp: new Date().toISOString(),
+      database: 'disconnected',
+      error: err.message,
+    });
+  }
+};
+
+app.get('/api/health', healthHandler);
+app.get('/health', healthHandler);
+
+// Fallback route for root API query
+app.get(['/', '/api'], (req, res) => {
   res.json({
     status: 'online',
-    platform: 'vercel-serverless',
-    timestamp: new Date().toISOString(),
-    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
-    host: mongoose.connection.host || null,
-    name: mongoose.connection.name || null,
+    message: 'R-Wave Cardio NX API is operational',
   });
 });
 
-module.exports = app;
-
+export default app;
