@@ -1150,7 +1150,7 @@ function App() {
             </div>
             <div className="about-story-visual">
               <img
-                src={aboutCardioTech}
+                src='pexels-delhi-eye-centre-2150177981-31000573.jpg'
                 alt="Advanced Cardiology and Critical Care Hospital Diagnostic Equipment"
                 className="about-story-img"
                 loading="lazy"
@@ -1162,7 +1162,7 @@ function App() {
           <div className="about-story-row reveal-on-scroll">
             <div className="about-story-visual">
               <img
-                src={aboutDistribution}
+                src='360_F_189577923_ANoSMIVLctEun9cy9WUafBnJ2YJvds9e.jpg'
                 alt="Pan-India Medical Equipment Distribution and Quality Inspection Facility"
                 className="about-story-img"
                 loading="lazy"
