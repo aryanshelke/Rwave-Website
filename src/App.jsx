@@ -62,27 +62,17 @@ function App() {
   // Products from API state
   const [apiProducts, setApiProducts] = useState([]);
 
-  // Listen for navigation and secret shortcut (Ctrl + Shift + A)
+  // Listen for browser navigation (popstate)
   useEffect(() => {
     const handlePopState = () => {
       setIsAdminRoute(window.location.pathname === "/admin" || window.location.hash === "#admin");
       setIsProductsPageRoute(window.location.pathname === "/products" || window.location.hash === "#all-products");
     };
 
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
-        e.preventDefault();
-        window.history.pushState({}, "", "/admin");
-        setIsAdminRoute(true);
-      }
-    };
-
     window.addEventListener("popstate", handlePopState);
-    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("popstate", handlePopState);
-      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
