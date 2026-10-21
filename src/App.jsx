@@ -41,8 +41,8 @@ import dvtSleeve from "./assets/products/dvt-sleeve.jpg"
 import fwBlood from "./assets/products/fw-blood.jpg"
 import fwRapid from "./assets/products/fw-rapid.jpg"
 import fwPort from "./assets/products/fw-port.jpg"
-import aboutCardioTech from './assets/about-cardio-tech.jpg'
-import aboutDistribution from './assets/about-distribution.jpg'
+import aboutUs1 from './assets/aboutUs1.jpg'
+import aboutUs2 from './assets/aboutUs2.jpg'
 
 import servicesBg from './assets/Service.jpeg'
 import './App.css'
