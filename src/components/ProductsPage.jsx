@@ -72,7 +72,7 @@ export default function ProductsPage({ products, onBackToHome, onInquireProduct 
       {/* ── Hero Banner ── */}
       <section className="catalog-hero">
         <div className="catalog-hero-inner">
-          <h1 className="catalog-title">All Medical Equipment &amp; Diagnostics</h1>
+          <h1 className="catalog-title">Product catalogue</h1>
           <p className="catalog-subtitle">
             Browse our complete portfolio of critical care electrocardiographs, ICU patient telemetry monitors, digital sphygmomanometers, sequential DVT pumps, and blood/fluid warming systems.
           </p>
