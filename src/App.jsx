@@ -142,7 +142,7 @@ function App() {
       },
       {
         threshold: 0.01,
-        rootMargin: '0px 0px 80px 0px',
+        rootMargin: '0px 0px 100px 0px',
       }
     )
 
@@ -151,7 +151,7 @@ function App() {
       const revealElements = document.querySelectorAll('.reveal-on-scroll')
       revealElements.forEach((el) => {
         const rect = el.getBoundingClientRect()
-        if (rect.top < window.innerHeight + 80 && rect.bottom > 0) {
+        if (rect.top < window.innerHeight + 100 && rect.bottom > 0) {
           el.classList.add('is-visible')
         } else {
           observer.observe(el)
@@ -203,7 +203,7 @@ function App() {
     const startY = window.pageYOffset
     const targetY = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 80)
     const distance = targetY - startY
-    const duration = 380 // responsive 380ms cinematic duration
+    const duration = 300 // fast 300ms smooth scroll
     let startTime = null
 
     // Easing: Quartic ease-out for ultra smooth deceleration
