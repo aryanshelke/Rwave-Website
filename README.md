@@ -11,7 +11,7 @@ Official web portal and digital product catalog for **R-Wave Cardio Products NX*
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
@@ -26,7 +26,7 @@ Official web portal and digital product catalog for **R-Wave Cardio Products NX*
 
 ---
 
-## 🩺 Overview
+## Overview
 
 The platform serves two functions:
 1. **Public Catalog**: A responsive interface showcasing medical equipment, categorized specifications, dynamic lead-generation forms, and technical brochures.
@@ -34,7 +34,7 @@ The platform serves two functions:
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 ### Client-Facing Portal
 - **Segmented Catalog**: Real-time filtering across core clinical segments:
@@ -53,7 +53,7 @@ The platform serves two functions:
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - **Framework**: React 19
@@ -70,7 +70,7 @@ The platform serves two functions:
 
 ---
 
-## 📂 Project Architecture
+## Project Architecture
 
 ```text
 ├── api/                  # Serverless API routes and database connector
@@ -84,3 +84,6 @@ The platform serves two functions:
 ├── vercel.json           # Platform rewrites and routing rules
 ├── vite.config.js        # Vite bundler configuration
 └── package.json          # Dependencies and scripts
+
+## License
+This repository and its codebase are proprietary and confidential. All rights reserved by R-Wave Cardio Products NX. Unauthorized copying, distribution, or commercial use is strictly prohibited.
