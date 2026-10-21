@@ -1,0 +1,330 @@
+/* ─────────────────────────────────────────────────────────────
+   PRODUCTS CATALOG PAGE — R WAVE CARDIO PRODUCTS NX
+   Aesthetic: Clean Clinical Frosted Glass & Medical Blue Design Tokens
+───────────────────────────────────────────────────────────── */
+
+.catalog-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--page-bg, #edf0f5);
+  color: var(--text-primary, #0e1b2e);
+  font-family: var(--font, 'Inter', -apple-system, sans-serif);
+}
+
+/* ── Sticky Navigation Bar ── */
+.catalog-nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(14, 27, 46, 0.08);
+  box-shadow: 0 4px 20px rgba(14, 27, 46, 0.04);
+}
+
+.catalog-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.catalog-logo-img {
+  height: 26px;
+  width: auto;
+}
+
+.catalog-logo-text-img {
+  height: 22px;
+  width: auto;
+}
+
+.catalog-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.catalog-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy, #0e1b2e);
+  background: rgba(14, 27, 46, 0.05);
+  border: 1px solid rgba(14, 27, 46, 0.1);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.catalog-back-btn:hover {
+  background: rgba(14, 27, 46, 0.1);
+  transform: translateX(-3px);
+}
+
+.catalog-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--blue-accent, #2b6be6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(43, 107, 230, 0.35);
+  transition: all 0.2s ease;
+}
+
+.catalog-quote-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(43, 107, 230, 0.45);
+}
+
+/* ── Hero / Header Banner ── */
+.catalog-hero {
+  padding: 4.5rem 1.75rem 2.5rem;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #eef3fb 60%, var(--page-bg) 100%);
+  border-bottom: 1px solid rgba(14, 27, 46, 0.06);
+}
+
+.catalog-hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.catalog-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(43, 107, 230, 0.1);
+  border: 1px solid rgba(43, 107, 230, 0.25);
+  color: var(--blue-accent, #2b6be6);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.catalog-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--navy, #0e1b2e);
+  line-height: 1.15;
+}
+
+.catalog-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: var(--text-muted, #6b7a94);
+  line-height: 1.6;
+}
+
+/* ── Filter & Search Toolbar ── */
+.catalog-toolbar-wrap {
+  max-width: 1280px;
+  width: 100%;
+  margin: 2rem auto 1.5rem;
+  padding: 0 1.75rem;
+}
+
+.catalog-toolbar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(14, 27, 46, 0.08);
+  border-radius: var(--radius-lg, 20px);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-card, 0 2px 12px rgba(14, 27, 46, 0.05));
+}
+
+.catalog-search-box {
+  position: relative;
+  min-width: 280px;
+  flex: 1;
+  max-width: 440px;
+}
+
+.catalog-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #6b7a94);
+  pointer-events: none;
+}
+
+.catalog-search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem 0 2.65rem;
+  background: var(--page-bg, #edf0f5);
+  border: 1px solid rgba(14, 27, 46, 0.1);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  color: var(--text-primary, #0e1b2e);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.catalog-search-input:focus {
+  background: #ffffff;
+  border-color: var(--blue-accent, #2b6be6);
+  box-shadow: 0 0 0 3px rgba(43, 107, 230, 0.15);
+}
+
+.catalog-category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.catalog-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted, #6b7a94);
+  background: rgba(14, 27, 46, 0.04);
+  border: 1px solid rgba(14, 27, 46, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.catalog-pill-btn:hover {
+  color: var(--text-primary, #0e1b2e);
+  background: rgba(14, 27, 46, 0.08);
+}
+
+.catalog-pill-btn.active {
+  color: #ffffff;
+  background: var(--blue-accent, #2b6be6);
+  border-color: var(--blue-accent, #2b6be6);
+  box-shadow: 0 4px 12px rgba(43, 107, 230, 0.3);
+}
+
+/* ── Product Grid ── */
+.catalog-grid-section {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.75rem 5rem;
+  flex: 1;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+.catalog-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border-radius: var(--radius-lg, 24px);
+  border: 1px dashed rgba(14, 27, 46, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.catalog-empty-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy, #0e1b2e);
+}
+
+.catalog-empty-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted, #6b7a94);
+  max-width: 420px;
+}
+
+/* ── "View All Products" Button on Landing Page ── */
+.view-all-products-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.75rem;
+}
+
+.btn-view-all-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--blue-accent, #2b6be6) 0%, #1e52b8 100%);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(43, 107, 230, 0.35);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-view-all-catalog:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(43, 107, 230, 0.5);
+  filter: brightness(1.08);
+}
+
+.btn-view-all-catalog:active {
+  transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .catalog-search-box {
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .catalog-hero {
+    padding: 3rem 1.25rem 2rem;
+  }
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
