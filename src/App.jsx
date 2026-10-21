@@ -141,24 +141,26 @@ function App() {
         })
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.01,
+        rootMargin: '0px 0px 80px 0px',
       }
     )
 
-    // Give DOM a micro-tick to render then observe all reveal-on-scroll elements
-    const timer = setTimeout(() => {
+    // Immediate check for all elements already in or near viewport
+    const checkReveals = () => {
       const revealElements = document.querySelectorAll('.reveal-on-scroll')
       revealElements.forEach((el) => {
-        // If element is already in viewport, make it visible immediately
         const rect = el.getBoundingClientRect()
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (rect.top < window.innerHeight + 80 && rect.bottom > 0) {
           el.classList.add('is-visible')
         } else {
           observer.observe(el)
         }
       })
-    }, 50)
+    }
+
+    checkReveals()
+    const timer = setTimeout(checkReveals, 20)
 
     return () => {
       clearTimeout(timer)
@@ -201,7 +203,7 @@ function App() {
     const startY = window.pageYOffset
     const targetY = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 80)
     const distance = targetY - startY
-    const duration = 600 // smooth 600ms cinematic duration
+    const duration = 380 // responsive 380ms cinematic duration
     let startTime = null
 
     // Easing: Quartic ease-out for ultra smooth deceleration
